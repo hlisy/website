@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Eco-Mind Switch</title>
+<style>
+    /* 기본 스타일 */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Pretendard", sans-serif;
+    }
+
+    body {
+        overflow-x: hidden;
+        background: #f8f8f8;
+    }
+
+    section {
+        width: 100vw;
+        height: 100vh;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #333;
+    }
+
+    h1, h2 {
+        margin-bottom: 20px;
+    }
+
+    /* 파스텔 그라데이션 */
+    .intro {
+        background: linear-gradient(120deg, #ffe7e7, #e4f1ff);
+    }
+    .problem {
+        background: linear-gradient(120deg, #e8ffe8, #fff4d9);
+    }
+    .idea {
+        background: linear-gradient(120deg, #f3e7ff, #d9faff);
+    }
+    .blog {
+        background: linear-gradient(120deg, #ffe7f3, #e7fff4);
+    }
+    .footer {
+        background: linear-gradient(120deg, #e0f0ff, #fff1f1);
+    }
+
+    /* 버튼 */
+    .eco-btn {
+        padding: 15px 25px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        background: #ffffffaa;
+        backdrop-filter: blur(6px);
+        transition: 0.3s;
+        width: max-content;
+    }
+
+    .eco-btn:hover {
+        background: #ffffffdd;
+    }
+
+    /* 감정 체크 박스 */
+    #feeling-box {
+        margin-top: 20px;
+        padding: 20px;
+        background: #ffffffa0;
+        border-radius: 14px;
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<!-- Intro -->
+<section class="intro">
+    <h1>🌿 Eco-Mind Switch</h1>
+    <p>환경과 마음을 함께 돌보는 심리 기반 생태 플랫폼</p>
+    <button class="eco-btn" onclick="scrollToSection('.problem')">시작하기</button>
+</section>
+
+<!-- Problem Awareness -->
+<section class="problem">
+    <h2>🧠 문제의식</h2>
+    <p>
+        기후 불안, 환경 스트레스, 무기력은 모두 인간의 마음과 연결된 문제입니다.
+        지식만으로는 행동이 변하지 않습니다.  
+        환경 문제 해결은 ‘심리적 장벽’을 넘는 방식으로 접근해야 합니다.
+    </p>
+    <button class="eco-btn" onclick="scrollToSection('.idea')">다음</button>
+</section>
+
+<!-- Idea -->
+<section class="idea">
+    <h2>🌱 핵심 아이디어: Eco-Mind Switch</h2>
+    <p>
+        환경 행동이 ‘기분 좋은 경험’으로 연결되는 시스템.  
+        감정 체크 → 맞춤 실천 추천 → 즉시 긍정 피드백 제공.
+    </p>
+    <button class="eco-btn" onclick="toggleFeeling()">감정 체크하기</button>
+
+    <div id="feeling-box">
+        <p>오늘 기분은 어떤가요?</p>
+        <button class="eco-btn" onclick="recommend('불안')">불안해요</button>
+        <button class="eco-btn" onclick="recommend('다운됨')">기운이 없어요</button>
+        <button class="eco-btn" onclick="recommend('보통')">그냥 그래요</button>
+        <p id="result" style="margin-top:15px;font-weight:bold;"></p>
+    </div>
+
+    <button class="eco-btn" onclick="scrollToSection('.blog')">다음</button>
+</section>
+
+<!-- Blog Section -->
+<section class="blog">
+    <h2>📘 Eco 블로그</h2>
+    <p>
+        기후 변화가 우리의 마음에 미치는 영향,  
+        작은 실천이 어떻게 심리적 안정으로 돌아오는지  
+        스크롤하면서 읽어보세요.
+    </p>
+    <button class="eco-btn" onclick="scrollToSection('.footer')">마무리</button>
+</section>
+
+<!-- Footer -->
+<section class="footer">
+    <h2>🌏 행동 변화를 위한 작은 시작</h2>
+    <p>
+        당신의 마음을 돌보는 것이 곧 지구를 돌보는 일입니다.  
+        작은 실천을 매일 이어가 보세요.
+    </p>
+</section>
+
+<script>
+function scrollToSection(target) {
+    document.querySelector(target).scrollIntoView({ behavior: "smooth" });
+}
+
+function toggleFeeling() {
+    let box = document.getElementById("feeling-box");
+    box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function recommend(feel) {
+    const message = {
+        "불안": "가벼운 산책과 함께 자연 소리 듣기를 추천해요. 불안을 진정시키는 데 좋아요.",
+        "다운됨": "작은 환경 행동 하나를 시도해보세요. 성취감이 기운을 조금 올려줄 거예요!",
+        "보통": "오늘은 마음이 안정적이네요. 물병을 재사용하며 작은 실천을 해보는 건 어때요?"
+    };
+    document.getElementById("result").innerText = message[feel];
+}
+</script>
+
+</body>
+</html>
